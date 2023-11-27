@@ -2,7 +2,7 @@ const SVG1 = d3.select('#vis-1')
 const SVG2 = d3.select('#vis-2')
 const SVG3 = d3.select('#vis-3')
 const Artistas = 'https://raw.githubusercontent.com/gustavopalaciosc/Proyecto-infovis/main/artist_data.json';
-const COLABS = 'https://raw.githubusercontent.com/gustavopalaciosc/Proyecto-infovis/main/colabs_2.json';
+const COLABS = 'https://raw.githubusercontent.com/gustavopalaciosc/Proyecto-infovis/main/colabs.json';
 
 const WIDTH_VIS_1 = 650;
 const HEIGHT_VIS_1 = 680;
@@ -63,7 +63,7 @@ updateFilterValue();
 render_vis_1(filterValue);
 
 function render_vis_1(filterValue){
-    // Basado en https://observablehq.com/@d3/zoomable-circle-packing?collection=@d3/d3-hierarchy y cambaido para funcionar con d3 v7
+    // Basado en https://observablehq.com/@d3/zoomable-circle-packing?collection=@d3/d3-hierarchy y cambaido para funcionar con d3 v7, tambien se uso Chat GPT para resolver pequeños bugs
     d3.json(Artistas).then(artist_data => {
         const color = d3.scaleLinear()
             .domain([0, 5])
@@ -166,6 +166,7 @@ function render_vis_1(filterValue){
 }
 
 function render_vis_2(song){
+    // Basado en https://yangdanny97.github.io/blog/2019/03/01/D3-Spider-Chart, tambien se uso Chat GPT para resolver pequeños bugs
     SVG2.select('*').remove()
 
     data = [song.indices[0]]

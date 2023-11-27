@@ -24,39 +24,50 @@
             <div class="response">
                 <h4>Contexto de la situación y la naturaleza de los datos</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
                 <p>Este dataset con el que trabajaremos contiene una lista exhaustiva de las canciones más famosas de 2023 
-                  que aparecen en Spotify. Este fue extraído de la plataforma Kaggle, la cual es una comunidad en línea de 
-                  data scientists e ingenieros de machine learning. Kaggle permite a los usuarios encontrar datasets para 
-                  crear modelos de IA, publicar conjuntos de datos y participar en concursos para resolver retos de data
-                  science, estos suelen ser muy completos y la mayoría suelen ser liberados para que puedan ser usados por
-                  quien los necesite. <a href="https://www.kaggle.com/">Link a Kaggle</a></p>
+                    que aparecen en <b>Spotify</b>. Este fue extraído de la plataforma <b>Kaggle</b>, la cual es una comunidad en línea 
+                    de data scientists e ingenieros de machine learning. Kaggle permite a los usuarios encontrar <b>datasets</b> 
+                    para crear modelos de IA, publicar conjuntos de datos y participar en concursos para resolver retos de 
+                    data science, estos suelen ser muy completos y la mayoría suelen ser liberados para que puedan ser usados 
+                    por quien los necesite. <a href="https://www.kaggle.com/">Link a Kaggle</a></p>
 
-                <p>Los datos que se muestran en este dataset son las 943 canciones mas escuchadas en el 2023 en Spotify, 
-                  ademas del numero de reproducciones y el artista, se tienen datos como la cantidad de playlist en las que 
-                  estan las canciones en variadas plataformas, o tambien un indice porcentual con respecto a bailabilidad, 
-                  energia, acusticidad, instrumentalidad, viveza o vocalidad</p>
+                <p>Los datos que se muestran en este dataset son las 943 canciones más escuchadas en el 2023 en Spotify, donde
+                     se lista su <b>nombre</b> (categórico), el <b>número de reproducciones</b> (cuantitativo secuencial discreto) y su(s) 
+                     <b>artista(s)</b> (categórico), se tienen también datos como la <b>cantidad de playlist</b> (cuantitativo secuencial discreto) 
+                     en las que están las canciones en variadas plataformas, o también un <b>índice porcentual</b> (cuantitativo secuencial 
+                     discreto) con respecto a bailabilidad (danceability), energía (energy), acusticidad (acousticness), viveza (liveness) 
+                     o vocalidad (speechiness).</p>
 
             </div>
             <div class="response">
                 <h4>Fuente original de los datos</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>El dataset que utilizaremos fue extraido de: <a href="https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023/data">Link</a>
+                <p>El dataset que utilizaremos fue extraído de: <a href="https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023/data">Link</a></p>
+
+                <p>A estos datos se les hizo un <b>preprocesamiento</b>, en el cual se obtuvieron generó un archivo <b>“artist_data.json”</b>, en 
+                    el cual se listaron todos los artistas, cada artista tiene 3 atributos, su nombre, el número total de streams y 
+                    una lista llamada children donde estaban sus canciones. Por otra parte, cada canción tiene 3 atributos, su nombre, 
+                    el número de streams y una lista llamada índices, la cual contiene los índices danceability, energy, acousticness, 
+                    liveness y speechiness, con su respectivo valor.</p>
+
+                <p>Por otra parte, está el archivo <b>“colabs.json”</b>, el cual contiene una lista de nodos (artistas) con dos atributos 
+                    cada uno, nombre y número de colaboraciones.</p>
+
             </div>
             <div class="response">
                 <h4>Usuario objetivo</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>Creemos que estos datos serían de gran utilidad para aquellas personas que se interesen y sean apasionados
-                  por la música, de forma que potencialmente puedan descubrir nuevas canciones en base a una serie de diversos
+                <p>Creemos que estos datos serían de gran utilidad para aquellas personas que se <b>interesen y sean apasionados
+                    por la música</b>, de forma que potencialmente puedan <b>descubrir nuevas canciones</b> en base a una serie de diversos
                   atributos por los cuales se categorizan las canciones y tomando a la vez su popularidad en todo el mundo.</p>
             </div>
             <div class="response">
                 <h4>Uso de la herramienta</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+                <p>Esta herramienta permite que el usuario tenga la posibilidad de <b>conocer las canciones más populares de este año</b>,
+                     además de esto se tienen las características de cada una de forma que la persona pueda conocer más sobre estas 
+                     y quizás agregarlas a su repertorio, por último también sería de utilidad el ser capaces de ver todas las 
+                    colaboraciones de los artistas, para poder buscar a tus artistas preferidos y ver con quienes lanzaron nuevas canciones.</p>
             </div>
 
         </div>
@@ -80,34 +91,28 @@
         <div class="case">
             <h2>Abstracción de tareas</h2>
             <div class="response">
-                <h4>Tarea 1 (acción + objetivo) + justificación según el dominio presentado</h4>
-                <p class="hint">
-                    No olvides que las acciones son: presentar, descubrir, anotar, producir, grabar, localizar, ubicar,
-                    navegar, explorar, identificar, comparar o resumir. Luego, los objetivos son posibles aspectos de
-                    los datos a observar. Como: distribución, proporción, valor, correlación, tendencia, outlier,
-                    feature, caminos, topología, extremos, entre otros.
+                <h4>Tarea 1</h4>
+                <!-- Puedes agregar los P que sean necesarios -->
+                <h4>Acción: Comparar</h4>
+                <h4>Objetivo: Valor</h4>
+                <p>Ya que, lo que busca esta tarea es la <b>comparación</b> de múltiples artistas, mostrando la cantidad de reproducciones 
+                    (<b>valor</b>) que tienen sus canciones. 
                 </p>
-
-                <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Acción: [una palabra]</h4>
-                <h4>Objetivo: [una palabra]</h4>
-                <p>Justificar la acción-objetivo con el dominio presentado: </p>
             </div>
             <div class="response">
-                <h4>Tarea 2 (acción + objetivo) + justificación según el dominio presentado</h4>
-
+                <h4>Tarea 2</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Acción: [una palabra]</h4>
-                <h4>Objetivo: [una palabra]</h4>
-                <p>Justificar la acción-objetivo con el dominio presentado: </p>
+                <h4>Acción: Presentar</h4>
+                <h4>Objetivo: Valor</h4>
+                <p>Ya que, el objetivo de esta tarea es <b>presentar</b> el <b>valor</b> de los índices para una canción seleccionada.</p>
             </div>
             <div class="response">
-                <h4>Tarea 3 (acción + objetivo) + justificación según el dominio presentado</h4>
-
+                <h4>Tarea 3</h4>
                 <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Acción: [una palabra]</h4>
-                <h4>Objetivo: [una palabra]</h4>
-                <p>Justificar la acción-objetivo con el dominio presentado: </p>
+                <h4>Acción: Resumir</h4>
+                <h4>Objetivo: Topología</h4>
+                <p>Ya que, se <b>resume</b> la estructura general de las colaboraciones entre artistas, mostrando la <b>topología</b> de estas de forma gráfica.
+                </p>
             </div>
         </div>
 
@@ -115,21 +120,69 @@
             <h2>Codificación visual e interacciones</h2>
             <div class="response">
                 <h4>Decisiones de diseño relacionadas a la primera tarea visual</h4>
-                <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+
+                <p>Para representar a cada uno de los artistas junto a sus respectivas canciones, se
+                     decidió usar <b>circular packing</b>, en donde cada círculo representa a un artista, y 
+                     dentro de cada círculo correspondiente a un artista se encontrarán círculos más
+                     pequeños representando cada una de las canciones del artista presentes en el top 
+                     de canciones escuchadas en 2023.</p>
+
+                <p>La cantidad de reproducciones por canción y por artista se representa con el <b>tamaño 
+                    de los círculos</b>. Para el caso del artista, el total de reproducciones corresponderá 
+                    a la suma de las reproducciones de sus canciones presentes en el top de canciones.</p>
+
+                <p>Como marca se usarán marcas <b>bidimensionales de contención</b>, representadas por círculos de 
+                    dos dimensiones que representarán a los artistas y sus respectivas canciones presentes en el top.</p>
+
+                <p>Los canales utilizados son dos. En primer lugar, se decidió utilizar el <b>tamaño</b> para 
+                    representar la <b>cantidad de reproducciones</b> , ya que este permite transmitir de mejor 
+                    manera esta información, en donde aquellos artistas con más reproducciones estarán 
+                    representados por círculos de mayor radio. En segundo lugar, se decidió usar la <b>posición</b>,
+                     también para representar el número de reproducciones, en donde aquellos artistas 
+                     con un mayor <b>número de reproducciones</b> tienen una posición más central, mientras que 
+                     aquellos artistas con menores reproducciones tienen una posición periférica. 
+                     De este modo se logra coherencia entre el tipo de dato que se quiere representar 
+                     (magnitud) y el canal elegido (tamaño y posición).</p>
+
+                <p>Además para esta visualización se tiene una interacción con el mouse, donde al hacer 
+                    hover sobre alguno de los círculos, mostrando el nombre del artista o canción 
+                    correspondiente a este y además el número de streams. </p>
+
+                <p>Finalmente, para esta tarea también se aplica un filtro, el cual por medio de un slider
+                     se puede seleccionar el número de artistas que se desean ver, y luego al presionar 
+                     el botón esta cambia para mostrar el valor seleccionado de artistas.</p>
             </div>
             <div class="response">
                 <h4>Decisiones de diseño relacionadas a la segunda tarea visual</h4>
-                <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+                
+                <p>Se mostrarán los índices porcentuales de los distintos atributos de las canciones 
+                    (danceability, valence, energy, acousticness, liveness, speechiness) en forma de un <b>gráfico radial</b>.
+                     Este <b>se desplegará cuando una canción sea seleccionada en la visualización de la primera tarea</b>,
+                      específicamente al ser presionado el círculo de una canción, en este gráfico se mostrarán los 
+                      valores de los 6 atributos con valores de 1 al 100, representados como el radio mostrado en cada dirección.</p>
+
+                <p>La marca elegida para representar esta información serán <b>áreas bidimensionales</b>. El canal elegido
+                     fue la <b>posición</b> junto con el <b>área presente en el gráfico radial</b>, para poder representar
+                      las <b>magnitudes asociadas a cada uno de los atributos</b> medidos para las canciones.</p>
             </div>
             <div class="response">
                 <h4>Decisiones de diseño relacionadas a la tercera tarea visual</h4>
-                <!-- Puedes agregar los P que sean necesarios -->
-                <h4>Respuesta:</h4>
-                <p>Modifica solo este texto (no el de arriba) para poner tu respuesta</p>
+                
+                <p>Para representar las colaboraciones entre los distintos artistas, se utilizó un <b>Diagrama
+                    Nodo Enlace</b>, con el cual <b>cada nodo representa uno los artistas</b> que se encuentre en la 
+                    base de datos, y los <b>enlaces representan las colaboraciones entre dos artistas</b>. El <b>tamaño
+                    de los nodos</b> corresponderá en este caso al <b>número de colaboraciones</b> del artista, entendiendo
+                    esto como el número de canciones que hizo en conjunto con otros artistas, dentro de las 
+                    canciones presentes en el top.</p>
+
+                <p>Para esta visualización se utilizaron marcas <b>bidimensionales</b> y <b>unidimensionales</b> de conexión, 
+                    en donde los nodos son representados por círculos y las conexiones entre estos por líneas. </p>
+
+                <p>Para representar el <b>número de colaboraciones</b> que tiene el artista, se utilizó como <b>canal el tamaño del nodo</b> (círculo).</p>
+
+                <p>En esta visualización se hace uso de navegación por medio de <b>d3.zoom</b>, con el fin de poder 
+                    visualizar de manera más clara las distintas colaboraciones existentes entre los distintos
+                    aristas presentes en el top.</p>
             </div>
         </div>
 
