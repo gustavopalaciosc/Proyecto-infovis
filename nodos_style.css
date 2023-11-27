@@ -1,0 +1,28 @@
+
+body {
+    background-color: #191414;
+}
+
+h1 {
+    color: #ffffff;
+    font-family: sans-serif;
+}
+
+.page-title {
+    text-align: center;
+}
+
+
+.tooltip {
+    position: absolute;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 12px;
+    display: none; 
+  }
+
+
+  
+.tooltip.active {
+    display: block;
+  }
