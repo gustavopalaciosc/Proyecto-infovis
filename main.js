@@ -52,7 +52,6 @@ function render_vis_1(filterValue){
                 .sum(d => d.streams)
                 .sort((a, b) => b.streams - a.streams));
         
-        console.log(+filterValue)
         artist_data.children = artist_data.children.slice(0, +filterValue)
                 
         const root = pack(artist_data);
@@ -78,7 +77,7 @@ function render_vis_1(filterValue){
             .on('mouseout',  () => {
                 tooltip.style('visibility', 'hidden');
             })
-            .on('click', (event, d) => !d.children ? console.log(d.data.name) : (focus !== d && (zoom(event, d), event.stopPropagation())));
+            .on('click', (event, d) => !d.children ? render_vis_2(d.data) : (focus !== d && (zoom(event, d), event.stopPropagation())));
     
         var zoomed = false;
     
@@ -160,5 +159,9 @@ function render_vis_1(filterValue){
     
         SVG1.node().appendChild(svg_1.node());
     });
+}
+
+function render_vis_2(song){
+    console.log(song)
 }
 
