@@ -1,4 +1,4 @@
-body {
+body{
     margin: 0 auto;
     /* Puedes cambiar el color de fondo (background-color) si lo deseas */
     background-color: rgb(15, 15, 15);
@@ -7,13 +7,9 @@ body {
     min-width: 500px;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-h5 {
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 #updateButton {
@@ -56,4 +52,8 @@ h5 {
     margin-left: 10px;
 }
 
-/* Completar este archivo con los que estime conveniente */
+#vis-1 {
+    display: flex;
+    justify-content: center;
+}
+    

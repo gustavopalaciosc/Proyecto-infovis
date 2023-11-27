@@ -1,10 +1,13 @@
 const SVG1 = d3.select('#vis-1')
+const SVG2 = d3.select('#vis-2')
 const Artistas = 'https://raw.githubusercontent.com/gustavopalaciosc/Proyecto-infovis/main/artist_data.json';
 
 const WIDTH_VIS_1 = 650;
 const HEIGHT_VIS_1 = 680;
 const MARGIN_TOP = 30;
 
+const WIDTH_VIS_2 = 650;
+const HEIGHT_VIS_2 = 680;
 
 // https://d3-graph-gallery.com/graph/interactivity_tooltip.html
 const tooltip = d3.select('body').append('div')
@@ -18,6 +21,10 @@ const tooltip = d3.select('body').append('div')
     
 const rangeInput = d3.select('#nodeFilter');
 const updateButton = d3.select('#updateButton');
+const titleVis1 = d3.select('#titleVis1');
+const titleVis2 = d3.select('#titleVis2');
+const instructions = d3.select('#instructions');
+
 
 let filterValue = +rangeInput.property('value'); 
 
@@ -27,9 +34,22 @@ function updateFilterValue() {
 }
 
 function handleButtonClick() {
-      SVG1.selectAll('*').remove();
-      render_vis_1(filterValue);
+    SVG1.selectAll('*').remove();
+    render_vis_1(filterValue);
 }
+
+function calculateFontSize(word, targetLength) {
+    const wordLength = word.length;
+    const fontSize = Math.floor(targetLength / wordLength);
+  
+    return fontSize;
+}
+
+// Chat GPT
+function formatNumberWithPoints(number) {
+    const formattedNumber = number.toLocaleString('en-US');
+    return formattedNumber.replace(/,/g, '.');
+  }
 
 rangeInput.on('input', updateFilterValue);
 updateButton.on('click', handleButtonClick);
@@ -60,7 +80,7 @@ function render_vis_1(filterValue){
             .attr('viewBox', `-${WIDTH_VIS_1 / 2} -${HEIGHT_VIS_1 / 2} ${WIDTH_VIS_1} ${HEIGHT_VIS_1 + MARGIN_TOP}`)
             .attr('width', WIDTH_VIS_1)
             .attr('height', HEIGHT_VIS_1)
-            .attr('style', `max-width: 100%; height: auto; display: block; margin: 0 -14px; background: hsl(0, 0%, 6%); cursor: pointer;`);
+            .attr('style', 'max-width: 100%; height: auto; display: block; margin: 0 -14px; background: hsl(0, 0%, 6%); cursor: pointer;');
     
         const node = svg_1.append('g')
             .selectAll('circle')
@@ -70,16 +90,14 @@ function render_vis_1(filterValue){
             .attr('pointer-events', d => !d.children ? 'none' : null)
             .on('mouseover', (event, d) => {
                 tooltip.style('visibility', 'visible')
-                    .html(d.data.name)
+                    .html(`<p>${d.data.name}</p> <p>Streams: ${formatNumberWithPoints(d.data.streams)}</p>`)
                     .style('left', (event.pageX + 10) + 'px')
-                    .style('top', (event.pageY - 10) + 'px');
+                    .style('top', (event.pageY - 10) + 'px')
             })
             .on('mouseout',  () => {
-                tooltip.style('visibility', 'hidden');
+                tooltip.style('visibility', 'hidden')
             })
-            .on('click', (event, d) => !d.children ? render_vis_2(d.data) : (focus !== d && (zoom(event, d), event.stopPropagation())));
-    
-        var zoomed = false;
+            .on('click', (event, d) => !d.children ? (render_vis_2(d.data), titleVis2.text(`Caracteristicas de: ${d.data.name}`), instructions.text('')) : (focus !== d && (zoom(event, d), event.stopPropagation())));
     
         const label = svg_1.append('g')
             .attr('pointer-events', 'none')
@@ -91,15 +109,6 @@ function render_vis_1(filterValue){
             .style('display', d => d.parent === root ? 'inline' : 'none')
             .text(d => d.data.name)
     
-        const title = svg_1.append('text')
-            .attr('text-anchor', 'middle')
-            .style('font-size', '30px')
-            .style('font-weight', 'bold')
-            .style('fill', '#fff')
-            .style('stroke', '#000')  
-            .style('stroke-width', '1.5px') 
-            .attr('dy', -HEIGHT_VIS_1 / 2 + MARGIN_TOP);
-    
         svg_1.on('click', (event) => zoom(event, root));
 
         let focus = root;
@@ -110,33 +119,24 @@ function render_vis_1(filterValue){
         function zoomTo(v) {
             const k = WIDTH_VIS_1 / v[2];
             view = v;
-
-            function calculateFontSize(word, targetLength) {
-                const wordLength = word.length;
-                const fontSize = Math.floor(targetLength / wordLength);
-              
-                return fontSize;
-            }
      
             label.attr('transform', d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
             node.attr('transform', d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
             node.attr('r', d => d.r * k);
     
             if (focus.data.name !== 'artists'){
-                title.text(focus.data.name);
+                titleVis1.text(`${focus.data.name}`);
                 node.attr('pointer-events', 'null');
-                zoomed = true;
                 setTimeout(() => {label.style('font-size', d => {`${calculateFontSize(focus.data.name, d.r * k)}px`})}, 400);
             }
             else{
-                title.text('');
+                titleVis1.text('');
                 node.attr('pointer-events', d => !d.children ? 'none' : null);
-                zoomed = false;
                 label.style('font-size', d => {
-                    return zoomed ? '$1px' : `${calculateFontSize(focus.data.name, d.r * k * 2)}px`;
+                    return !d.children ? '$1px' : `${calculateFontSize(focus.data.name, d.r * k * 2)}px`;
                 });
             }
-        }
+        };
      
         function zoom(event, d) {
             focus = d;
@@ -151,17 +151,118 @@ function render_vis_1(filterValue){
                 .filter(function(d) {return d.parent === focus || this.style.display === 'inline'})
                 .transition(transition)
                 .style('fill-opacity', d => d.parent === focus ? 1 : 0)
-                .style('font-size', d => d.parent === focus ? '$0px': '$0px')
                 .on('start', function(d) {if (d.parent === focus) this.style.display = 'inline'})
                 .on('end', function(d) {if (d.parent !== focus) this.style.display = 'none'});
      
-        }
+        };
     
         SVG1.node().appendChild(svg_1.node());
     });
 }
 
 function render_vis_2(song){
-    console.log(song)
+    SVG2.select('*').remove()
+
+    data = [song.indices[0]]
+    let features = ['danceability', 'valence', 'energy', 'acousticness', 'liveness', 'speechiness'];
+
+    let radialScale = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 250]);
+    let ticks = [20, 40, 60, 80, 100];
+
+    let svg_2 = SVG2.append('svg')
+        .attr('width', WIDTH_VIS_2)
+        .attr('height', HEIGHT_VIS_2);
+
+    svg_2.selectAll('circle')
+        .data(ticks)
+        .join(
+            enter => enter.append('circle')
+                .attr('cx', WIDTH_VIS_2 / 2)
+                .attr('cy', HEIGHT_VIS_2 / 2)
+                .attr('fill', 'none')
+                .attr('stroke', 'gray')
+                .attr('r', d => radialScale(d))
+    );
+
+    svg_2.selectAll('.ticklabel')
+        .data(ticks)
+        .join(
+            enter => enter.append('text')
+                .attr('class', 'ticklabel')
+                .attr('x', WIDTH_VIS_2 / 2 + 5)
+                .attr('y', d => HEIGHT_VIS_2 / 2 - radialScale(d))
+                .text(d => d.toString())
+                .attr('fill','white')
+                .style('font-size', '10px')
+    );
+
+    function angleToCoordinate(angle, value){
+        let x = Math.cos(angle) * radialScale(value);
+        let y = Math.sin(angle) * radialScale(value);
+        return {'x': WIDTH_VIS_2 / 2 + x, 'y': HEIGHT_VIS_2 / 2 - y};
+    };
+
+    let featureData = features.map((f, i) => {
+        let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+        return {
+            'name': f,
+            'angle': angle,
+            'line_coord': angleToCoordinate(angle, 100),
+            'label_coord': angleToCoordinate(angle, 120)
+        };
+    });
+
+    svg_2.selectAll('line')
+        .data(featureData)
+        .join(
+            enter => enter.append('line')
+                .attr('x1', WIDTH_VIS_2 / 2)
+                .attr('y1', HEIGHT_VIS_2 / 2)
+                .attr('x2', d => d.line_coord.x)
+                .attr('y2', d => d.line_coord.y)
+                .style('stroke', 'white')
+    );
+    
+    svg_2.selectAll('.axislabel')
+        .data(featureData)
+        .join(
+            enter => enter.append('text')
+                .attr('x', d => d.label_coord.x - 33)
+                .attr('y', d => d.name === 'danceability' ? d.label_coord.y + 20 : d.label_coord.y)
+                .text(d => d.name)
+                .attr('fill','white')
+                .style('font-size', '12px')
+    );
+
+    let line = d3.line()
+        .x(d => d.x)
+        .y(d => d.y);
+
+    function getPathCoordinates(data_point){
+        let coordinates = [];
+        coordinates[0] = angleToCoordinate((Math.PI / 2), data_point[features[0]])
+        coordinates[1] = angleToCoordinate((Math.PI / 2) + (2 * Math.PI * 1 / features.length), data_point[features[1]])
+        coordinates[2] = angleToCoordinate((Math.PI / 2) + (2 * Math.PI * 2 / features.length), data_point[features[2]])
+        coordinates[3] = angleToCoordinate((Math.PI / 2) + (2 * Math.PI * 3 / features.length), data_point[features[3]])
+        coordinates[4] = angleToCoordinate((Math.PI / 2) + (2 * Math.PI * 4 / features.length), data_point[features[4]])
+        coordinates[5] = angleToCoordinate((Math.PI / 2) + (2 * Math.PI * 5 / features.length), data_point[features[5]])
+        return coordinates;
+    }
+
+
+    svg_2.selectAll('path')
+        .data(data)
+        .join(
+            enter => enter.append('path')
+                .datum(d => getPathCoordinates(d))
+                .attr('d', line)
+                .attr('stroke-width', 3)
+                .attr('stroke', '#1db95')
+                .attr('fill', '#1db954')
+                .attr('stroke-opacity', 1)
+                .attr('opacity', 0.5)
+    );
 }
 

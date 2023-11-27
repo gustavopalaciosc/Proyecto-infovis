@@ -14,17 +14,20 @@
     <div class="container">
         <h1>Top Spotify</h1>
 
-        <h2>Artistas con mas reproducciones:</h2>
+        <h2>Artistas con más reproducciones:</h2>
         <label for="nodeFilter">Cantidad de Artistas:</label>
-        <input type="range" id="nodeFilter" min="1" max="645" value="10">
+        <input type="range" id="nodeFilter" min="1" max="645" value="100">
         <button id="updateButton">Filtrar</button>
+        <h2 id="titleVis1"></h2>
         <h2 id="artist"></h2>
         <div id="vis-1">
         </div>
-
-        <h2>Visualización 2</h2>
+        <p id="instructions">(Seleccionar artista y canción para desplegar siguiente visualización)</p>
+    </div>
+    <div class="container">
+        <h2 id="titleVis2"></h2>
         <div id="vis-2">
-        </div>
+    </div>
         
     <script src="main.js"></script>
 </body>
