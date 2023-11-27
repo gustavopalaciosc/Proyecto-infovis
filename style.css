@@ -1,0 +1,59 @@
+body {
+    margin: 0 auto;
+    /* Puedes cambiar el color de fondo (background-color) si lo deseas */
+    background-color: rgb(15, 15, 15);
+    color: whitesmoke;
+    max-width: 1200px;
+    min-width: 500px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#updateButton {
+    padding: 10px;
+    background: #1db954;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+#updateButton:hover {
+    background: #0f6927;
+}
+
+#nodeFilter {
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    border-radius: 5px;
+    background: #1db954;
+    outline: none;
+}
+  
+#nodeFilter::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+  
+#filterValue {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Completar este archivo con los que estime conveniente */
