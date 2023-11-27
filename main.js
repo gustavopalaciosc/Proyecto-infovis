@@ -29,6 +29,7 @@ const updateButton = d3.select('#updateButton');
 const titleVis1 = d3.select('#titleVis1');
 const titleVis2 = d3.select('#titleVis2');
 const instructions = d3.select('#instructions');
+const descriptionVis2 = d3.select('#descriptionVis2');
 
 
 let filterValue = +rangeInput.property('value'); 
@@ -102,7 +103,7 @@ function render_vis_1(filterValue){
             .on('mouseout',  () => {
                 tooltip.style('visibility', 'hidden')
             })
-            .on('click', (event, d) => !d.children ? (render_vis_2(d.data), titleVis2.text(`Caracteristicas de: ${d.data.name}`), instructions.text('')) : (focus !== d && (zoom(event, d), event.stopPropagation())));
+            .on('click', (event, d) => !d.children ? (render_vis_2(d.data), titleVis2.text(`Caracteristicas de: ${d.data.name}`), descriptionVis2.text('En esta visualización se muestra la canción que has seleccionado en el grafico anterior, y muestra el valor entre 0 - 100 para distintas características de esta.'), instructions.text('')) : (focus !== d && (zoom(event, d), event.stopPropagation())));
     
         const label = svg_1.append('g')
             .attr('pointer-events', 'none')

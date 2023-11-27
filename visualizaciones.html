@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.js"></script>
-    <title>T02</title>
+    <title>Top Spotify</title>
 </head>
 
 <body>
@@ -15,6 +15,11 @@
         <h1>Top Spotify</h1>
 
         <h2>Artistas con más reproducciones:</h2>
+        <p>En esta visualización se puede observar los artistas cuyas canciones tuvieron más reproducciones en el 2023, 
+            cada artista corresponde a uno de los círculos verdes, cuyo tamaño es proporcional a la cantidad de streams de 
+            las canciones que tienen en la lista de más escuchados, si presionas uno de los círculos podrás ver las canciones más escuchadas,
+            presiona una de las canciones y se desplegará la segunda visualización
+        </p>
         <label for="nodeFilter">Cantidad de Artistas:</label>
         <input type="range" id="nodeFilter" min="1" max="645" value="100">
         <button id="updateButton">Filtrar</button>
@@ -26,10 +31,15 @@
     </div>
     <div class="container">
         <h2 id="titleVis2"></h2>
+        <p id="descriptionVis2"></p>
         <div id="vis-2">
     </div>
     <div class="container">
         <h2>Colaboraciones de Artistas</h2>
+        <p>Por último, en la tercera visualización, se presenta un Diagrama Nodo Enlace, en el cual cada enlace
+             muestra la cantidad de colaboraciones que hizo cada artista, entendiendo como colaboración las 
+             canciones que se hicieron en conjunto entre 2 o más artistas, además el tamaño de cada nodo es 
+             proporcional a la cantidad de colaboraciones</p>
         <div id="vis-3">
         </div>
     </div>
