@@ -283,9 +283,8 @@ const svg_3 = SVG3.append("svg")
 
 const mostrarColabs = (nodos, enlaces) => {
     const FuerzaEnlace = d3.forceLink(enlaces)
-        .id((d) => d.artista) // Llave para conectar source-target con el nodo
+        .id((d) => d.artista) 
         .strength(link => {
-          // Definir la fuerza del enlace de forma personalizada
           return 2
     })
 
@@ -306,7 +305,6 @@ const mostrarColabs = (nodos, enlaces) => {
         .join("line")
         .attr("stroke-width", 2);
     
-    // Cada uno de los nodos correspondiente a un circulo
     const circulos = svg_3
         .append("g")
         .attr("stroke", "#1DB954")
@@ -333,7 +331,6 @@ const mostrarColabs = (nodos, enlaces) => {
 
     const manejadorZoom = (evento) => {
         const transformacion = evento.transform;
-        // Solo agregando esta línea, se aplica una traslación y zoom.
         circulos.attr("transform", transformacion);
         titulos.attr("transform", transformacion);
         lineas.attr("transform", transformacion);
