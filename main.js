@@ -281,7 +281,7 @@ const svg_3 = SVG3.append("svg")
     .domain([1, 25])
     .range([8, 40]);
 
-const iniciarSimulacion = (nodos, enlaces) => {
+const mostrarColabs = (nodos, enlaces) => {
     const FuerzaEnlace = d3.forceLink(enlaces)
         .id((d) => d.artista) // Llave para conectar source-target con el nodo
         .strength(link => {
@@ -289,7 +289,7 @@ const iniciarSimulacion = (nodos, enlaces) => {
           return 2
     })
 
-    const simulacion = d3
+    const colabs = d3
         .forceSimulation(nodos)
         .force("enlaces", FuerzaEnlace)
         .force("centro", d3.forceCenter(WIDTH_VIS_3 / 2, HEIGHT_VIS_3 / 2))
@@ -350,7 +350,7 @@ const iniciarSimulacion = (nodos, enlaces) => {
 
 
 
-  simulacion.on("tick", () => {
+  colabs.on("tick", () => {
     circulos
         .attr("cx", (d) => d.x)
         .attr("cy", (d) => d.y);
@@ -371,7 +371,7 @@ d3.json(COLABS)
     .then((datos) => {
         const nodos = datos.nodos;
         const enlaces = datos.enlaces;
-        iniciarSimulacion(nodos, enlaces);
+        mostrarColabs(nodos, enlaces);
     })
     .catch((error) => {
         console.log("Failed retriving data")
