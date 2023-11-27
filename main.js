@@ -275,7 +275,9 @@ function render_vis_2(song){
 
 const svg_3 = SVG3.append("svg")
     .attr("width", WIDTH_VIS_3)
-    .attr("height", HEIGHT_VIS_3);
+    .attr("height", HEIGHT_VIS_3)
+    .style("border", '1px solid')
+    .style("margin", '10px 10px');
   
     let tamano_nodo = d3.scaleLinear()
     .domain([1, 25])
@@ -292,7 +294,7 @@ const mostrarColabs = (nodos, enlaces) => {
         .forceSimulation(nodos)
         .force("enlaces", FuerzaEnlace)
         .force("centro", d3.forceCenter(WIDTH_VIS_3 / 2, HEIGHT_VIS_3 / 2))
-        .force("colision", d3.forceCollide(35)) // Tiene más poder que los demás
+        .force("colision", d3.forceCollide(35)) 
         .force("carga", d3.forceManyBody().strength(2))
 
   
